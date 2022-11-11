@@ -1,0 +1,457 @@
+openapi: 3.0.0
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/JARETTEN/lotr-api/1.0.0
+  - description: The One API
+    url: https://the-one-api.dev/v2/
+info:
+  description: Mellon, this is the one API (What the hell is an Application Programming Interface?) to rule them all. No really, it serves your needs regarding data about The Lord of the Rings, the epic books by J. R. R. Tolkien and the official movie adaptions by Peter Jackson. There are many endpoints available, but you need to sign up to obtain an access key. Get a glimpse into the documentation to check out all accessible datasets.
+  version: "1.0.0"
+  title: One API To Rule Them All
+  license:
+    name: MIT
+    url: 'https://opensource.org/licenses/MIT'
+tags:
+  - name: developers
+    description: Operations available to authenticated users
+paths:
+  /book:
+    get:
+      tags:
+        - developers
+      summary: |
+        List of all "The Lord of the Rings" books
+      responses:
+          '200':
+            description: all lord of the rings books ever
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Book'
+  /book/{id}:
+    get:
+      tags:
+        - developers
+      summary: |
+        Request one specific book
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Numeric ID of the book to get
+        
+      
+      responses:
+          '200':
+            description: one lord of the rings book by book id if it exists.
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Book'
+                    
+  /book/{id}/chapter:
+    get:
+      tags:
+        - developers
+      summary: |
+        Request all chapters of one specific book by id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Numeric ID of the book to get
+        
+      
+      responses:
+          '200':
+            description: all chapters of one lord of the rings book by book id if it exists.
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Chapter'
+                    
+  /movie:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - developers
+      summary: |
+        List of all movies, including the "The Lord of the Rings" and the "The Hobbit" trilogies
+      responses:
+          '200':
+            description: all lord of the rings movies.
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Movie'
+          
+  /movie/{id}:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - developers
+      summary: |
+        Request one specific movie
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Numeric ID of the book to get
+        
+      
+      responses:
+          '200':
+            description: all chapters of one lord of the rings book by book id if it exists.
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Movie'
+
+  /movie/{id}/quote:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - developers
+      summary: |
+        Request all movie quotes for one specific movie (only working for the LotR trilogy) 
+        only works for ids 5cd95395de30eff6ebccde5c, 5cd95395de30eff6ebccde5b, 5cd95395de30eff6ebccde5d
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Numeric ID of the movie to get quotes for
+        
+      
+      responses:
+          '200':
+            description: all quotes of one lord of the rings movies.
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Movie'
+
+  /character:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - developers
+      summary: |
+        List of characters including metadata like name, gender, realm, race and more
+      responses:
+          '200':
+            description: list lord of the rings characters.
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Character'
+                    
+  /character/{id}:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - developers
+      summary: |
+        Request one specific character
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Numeric ID of the character to get information for
+          
+      responses:
+          '200':
+            description: information for character id.
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Character' 
+                    
+  /character/{id}/quote:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - developers
+      summary: |
+        Request quotes of one specific character
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Numeric ID of the character to get quotes for
+          
+      responses:
+          '200':
+            description: quote information for character id.
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Quote' 
+                    
+  /quote:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - developers
+      summary: |
+        Request quotes of all the characters
+          
+      responses:
+          '200':
+            description: all quotes.
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Quote' 
+                    
+  /quote/{id}:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - developers
+      summary: |
+        Request one quote by id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Numeric ID of the quote to get
+          
+      responses:
+          '200':
+            description: quote if it exists.
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Quote' 
+
+  /chapter:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - developers
+      summary: |
+        Request all chapters
+          
+      responses:
+          '200':
+            description: all chapters.
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/BookChapter' 
+
+  /chapter/{id}:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - developers
+      summary: |
+        Request one chapter by id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Numeric ID of the chapter to get
+          
+      responses:
+          '200':
+            description: chapter if it exists.
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/BookChapter' 
+  
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT  
+  schemas:
+    Book:
+      type: object
+      required:
+        - _id
+        - name
+      properties:
+        _id:
+          type: string
+          format: uuid
+          example: 5cf5805fb53e011a64671582
+        name:
+          type: string
+          example: The Fellowship Of The Ring
+
+    BookChapter:
+      type: object
+      required:
+        - _id
+        - chapterName
+        - book
+      properties:
+        _id:
+          type: string
+          format: uuid
+          example: 6091b6d6d58360f988133b8b
+        chapterName:
+          type: string
+          example: A Long-expected Party
+        book:
+          type: string
+          format: uuid
+          example: 5cf5805fb53e011a64671582
+
+    Chapter:
+      type: object
+      required:
+        - _id
+        - chapterName
+      properties:
+        _id:
+          type: string
+          format: uuid
+          example: 6091b6d6d58360f988133b8b
+        name:
+          type: string
+          example: A Long-expected Party
+
+    Movie:
+      type: object
+      required:
+        - _id
+        - name
+        - runtimeInMinutes
+        - budgetInMillions
+        - boxOfficeRevenueInMillions
+        - academyAwardNominations
+        - academyAwardWins
+        - rottenTomatoesScore
+      properties:
+        _id:
+          type: string
+          format: uuid
+          example: 5cd95395de30eff6ebccde56
+        name:
+          type: string
+          example: The Lord of the Rings Series
+        runtimeInMinutes:
+          type: number
+          example: 558
+        budgetInMillions:
+          type: number
+          example: 281
+        boxOfficeRevenueInMillions:
+          type: number
+          example: 2917
+        academyAwardNominations:
+          type: number
+          example: 29
+        academyAwardWins:
+          type: number
+          example: 17
+        rottenTomatoesScore:
+          type: number
+          example: 94
+
+    Character:
+      type: object
+      required:
+        - _id
+        - race
+        - name
+        - wikiUrl
+      properties:
+        _id:
+          type: string
+          format: uuid
+          example: 5cd99d4bde30eff6ebccfbbe
+        race:
+          type: string
+          example: Human
+        name:
+          type: string
+          example: Adanel
+        wikiUrl:
+          type: string
+          example: http://lotr.wikia.com//wiki/Adanel
+
+    Quote:
+      type: object
+      required:
+        - _id
+        - dialog
+        - movie
+        - character
+        - id
+      properties:
+        _id:
+          type: string
+          format: uuid
+          example: 5cd96e05de30eff6ebcce7e9
+        dialog:
+          type: string
+          example: "Deagol!"
+        movie:
+          type: string
+          format: uuid
+          example: 5cd95395de30eff6ebccde5d
+        character:
+          type: string
+          example: 5cd99d4bde30eff6ebccfe9e
+        id:
+          type: string
+          example: 5cd96e05de30eff6ebcce7e9
+
