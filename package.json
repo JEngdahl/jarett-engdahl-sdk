@@ -1,0 +1,11 @@
+{
+  "name": "jarett-engdahl-sdk",
+  "version": "1.0.0",
+  "description": "swagger client sdk for lotr api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT"
+}
