@@ -7,8 +7,18 @@ To complete this task, I chose to outline the routes found in the documentation 
 
 ## Intro
 
+In this SDK we use Swagger and it's SDK client builder to ship something useful. Likns to resources and docs can be found below.
+
+* https://openapi-generator.tech/docs/installation
+* https://the-one-api.dev/documentation
+
 ## Build
 
-## Test
+to build the package start by
 
-## Ship
+- installing Java (https://www.java.com/en/download/)
+- `npm login` authenticationg with npm
+
+## Ship (https://www.npmjs.com/package/jarett-engdahl-sdk)
+`npm run build:ts`
+`npm run pub`
