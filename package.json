@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "jarett-engdahl-sdk",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "swagger client sdk for lotr api",
   "main": "clients/typescript/index.ts",
   "scripts": {
